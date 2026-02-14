@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Mobile 💗</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(160deg,#0f0c29,#302b63,#24243e);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 420px;
+    padding: 16px;
+    text-align: center;
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: 28px;
+}
+
+.message {
+    font-size: 16px;
+    opacity: 0.9;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.album {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.album img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+.album img:first-child {
+    grid-column: span 2;
+}
+
+button {
+    margin-top: 18px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    background: #ff4b91;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.heart {
+    position: fixed;
+    color: #ff4b91;
+    font-size: 20px;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background music -->
+<audio id="bgMusic" loop>
+  <source src="my-love-mine-all-mine.mp3" type="audio/mpeg">
+</audio>
+
+<div class="wrapper">
+
+<h1>Happy Valentine 💗</h1>
+
+<div class="message">
+Untuk kamu yang selalu bikin hari aku lebih cerah…  
+Semoga hari ini penuh senyum, tawa, dan rasa hangat.  
+Terima kasih sudah hadir. 💕
+</div>
+
+<div class="album">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+</div>
+
+<button onclick="loveExplosion()">Send Love 💖</button>
+
+</div>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+window.addEventListener("load", () => {
+  music.volume = 0.7;
+  music.play().catch(() => {});
+});
+
+document.addEventListener("touchstart", startMusic, { once: true });
+document.addEventListener("click", startMusic, { once: true });
+
+function startMusic() {
+  music.play().catch(() => {});
+}
+
+function loveExplosion() {
+    for(let i=0;i<25;i++){
+        const heart = document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💖";
+
+        const x = (Math.random()-0.5)*400+"px";
+        const y = (Math.random()-0.5)*400+"px";
+
+        heart.style.left="50%";
+        heart.style.top="60%";
+        heart.style.setProperty("--x",x);
+        heart.style.setProperty("--y",y);
+
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),1000);
+    }
+}
+</script>
+
+</body>
+</html>
